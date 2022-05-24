@@ -14,3 +14,12 @@ def rearrange(label, fourPiece_img):
     output_img[100:,100:,:] = fourPiece_img[index_bottright]
     
     return output_img
+
+def rearrange3x3(label, ninePiece_img):
+    P, H, W, C = ninePiece_img.shape
+    output_img = np.zeros((H*3,W*3,C))
+    
+    for i in range(P):
+        output_img[(label[i]//3)*H:(label[i]//3+1)*H,(label[i]%3)*W:(label[i]%3+1)*W,:] = ninePiece_img[i]
+    
+    return output_img
